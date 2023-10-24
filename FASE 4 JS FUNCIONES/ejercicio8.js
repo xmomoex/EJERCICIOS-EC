@@ -14,4 +14,3 @@ document.write(diferencia_de_días(new Date('2023-10-10'),new Date('2023-10-15')
 
 
 
-hola me llamo moi
