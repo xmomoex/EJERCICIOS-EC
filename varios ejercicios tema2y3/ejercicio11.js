@@ -11,10 +11,10 @@ for (i = 0; i <= cadena.length; i++) {
     }
 }
 for (i=0; i<cadena.length;i++){
-    if (cadena.substring(i, i + 1) == (cadena.substring(i, i + 1)).toUpperCase() ) {
+    if (cadena[i] == cadena[i].toUpperCase() ) {
         mayuscula = true;
     }
-    if (cadena.substring(i, i + 1) == (cadena.substring(i, i + 1)).toLowerCase() ) {
+    if (cadena[i]== cadena[i].toLowerCase() ) {
         minuscula = true;
     }
 }
