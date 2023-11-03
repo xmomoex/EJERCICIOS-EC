@@ -4,7 +4,7 @@ let codPostal = new Map([
     [37003, "Alarcos"],
     [11011, "Algeciras"],
     [11500, "Puerto de Santa María"]
-])
+]);
 
 let opcion = 1;
 
