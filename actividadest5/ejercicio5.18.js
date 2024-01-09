@@ -68,6 +68,9 @@ class Persona {
   set nombre(nuevoNombre) {
     this._nombre = nuevoNombre;
   }
+  comer() {
+    return `${this._nombre} esta comiendo`;
+  }
 }
 
 let persona1 = new Persona("Moisés", 20);
@@ -80,3 +83,19 @@ console.log(persona1.nombre);
 persona1.nombre = "pepe";
 
 console.log(persona1.nombre);
+
+class Pet extends Persona {
+  constructor(nombre, edad, raza) {
+    super(nombre, edad);
+    this._raza = raza;
+  }
+  get raza() {
+    return this._raza;
+  }
+  set raza(nuevaRaza) {
+    this._raza = nuevaRaza;
+  }
+}
+
+let pet1 = new Pet("yosi", 22, "lepi");
+console.log(pet1);
