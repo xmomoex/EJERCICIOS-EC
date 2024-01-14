@@ -54,5 +54,4 @@ const movie = new Pelicula("NombrePelicula", 2022, 120, "Género", [
   "Actor4",
   "Actor5",
   "Actor6",
-  "Actor7",
 ]);

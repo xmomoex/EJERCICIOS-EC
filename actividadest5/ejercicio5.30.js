@@ -1,5 +1,6 @@
+//reescribo la funcion escapeHTML
 function escapeHTML(text) {
-  const replacements = [
+  var replacements = [
     ["&", "&amp;"],
     ['"', "&quot;"],
     ["<", "&lt;"],
@@ -7,7 +8,7 @@ function escapeHTML(text) {
   ];
 
   replacements.forEach((replace) => {
-    const regex = new RegExp(replace[0], "g");
+    let regex = new RegExp(replace[0], "g");
     text = text.replace(regex, replace[1]);
   });
 

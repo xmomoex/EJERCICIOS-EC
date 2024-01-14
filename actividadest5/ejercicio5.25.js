@@ -8,21 +8,21 @@ const operarFechas = {
     return diferencia_de_días;
   },
   maxFecha(fecha1, fecha2) {
-    let diferencia1 = Date() - fecha1;
-    let diferencia2 = Date() - fecha2;
-    if (diferencia1 < 0) {
-      diferencia1 = diferencia1 * -1;
-    }
-    if (diferencia2 < 0) {
-      diferencia2 = diferencia2 * -1;
-    }
-    if (diferencia1 == diferencia2) {
-      return fecha1;
+    let fechaActual = new Date();
+
+    let diferencia1 = Math.abs(fechaActual - fecha1);
+    let diferencia2 = Math.abs(fechaActual - fecha2);
+
+    return diferencia1 < diferencia2 ? fecha1 : fecha2;
+  },
+  testFecha(fecha) {
+    let regex = /\d{2}-\d{2}-\d{4}/;
+    if (!regex.test(fecha)) {
+      return false;
     } else {
-      return fecha2;
+      return true;
     }
   },
-  testFecha(fecha) {},
   ayerFecha(fecha) {
     // Restamos un día a la fecha
     return new Date(fecha.getTime() - 24 * 60 * 60 * 1000);
@@ -33,14 +33,14 @@ const operarFechas = {
   },
 };
 
+//pruebo los métodos
 console.log(
-  "Diferencia de fechas: " +
-    operarFechas.difFechas(new Date("2023-10-10"), new Date("2023-10-15"))
+  operarFechas.difFechas(new Date("2023-10-10"), new Date("2023-10-15"))
 );
-
 console.log(
   operarFechas.maxFecha(new Date("2024-01-10"), new Date("2023-10-15"))
 );
-
 console.log(operarFechas.ayerFecha(new Date("2024-01-10")));
 console.log(operarFechas.mañanaFecha(new Date("2024-01-10")));
+console.log(operarFechas.testFecha("23-04-2023"));
+console.log(Date());
