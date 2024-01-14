@@ -12,14 +12,17 @@ class Calculadora {
   }
 
   restar() {
+    //uso el objeto this para usar las propiedades de la clase
     return this.numero1 - this.numero2;
   }
 
   multiplicar() {
+    //uso el objeto this para usar las propiedades de la clase
     return this.numero1 * this.numero2;
   }
 
   dividir() {
+    //uso el objeto this para usar las propiedades de la clase
     if (this.numero2 !== 0) {
       return this.numero1 / this.numero2;
     } else {

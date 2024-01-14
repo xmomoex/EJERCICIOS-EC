@@ -1,11 +1,13 @@
 //construyo el objeto partiendo de object
 class Matriz extends Object {
+  //creo el constructor
   constructor(nFilas, nColumnas) {
     super();
     this._nFilas = nFilas;
     this._nColumnas = nColumnas;
     this.contenido = [];
   }
+  //creo los métodos
   inicializarMatriz(valor) {
     for (let i = 0; i < this._nFilas; i++) {
       this.contenido[i] = [];
@@ -28,6 +30,7 @@ class Matriz extends Object {
     console.log(this.contenido);
   }
 }
+//creo el objeto y pruebo los métodos
 let matriz1 = new Matriz(3, 3);
 
 console.log(matriz1.inicializarMatriz(3));

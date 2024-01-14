@@ -1,4 +1,6 @@
+//creo la clase
 class Club {
+  //creo el constructor
   constructor(anoFundacion, numSocios, nombreEstadio, ciudad, palmares) {
     this._anoFundacion = anoFundacion;
     this._numSocios = numSocios;
@@ -6,7 +8,9 @@ class Club {
     this._ciudad = ciudad;
     this._palmares = palmares;
   }
+  //creo el método
   verClub() {
+    //si no existe la variable saca por pantalla no disponible
     console.log(`Año de fundación: ${this._anoFundacion || "No disponible"}`);
     console.log(`Número de socios: ${this._numSocios || "No disponible"}`);
     console.log(
@@ -17,9 +21,10 @@ class Club {
   }
 }
 
-// Crear un club y mostrar sus datos
+//creo los cubles y muestro sus datos
 let barcelona = new Club();
 barcelona.verClub();
+//esto es para separar los datos
 console.log("------------------------------");
 let madrid = new Club(1889);
 madrid.verClub();
@@ -40,5 +45,5 @@ let cordoba = new Club(
   "cordoba",
   "1 copa, 2002"
 );
-rayo.verClub();
+cordoba.verClub();
 console.log("------------------------------");
