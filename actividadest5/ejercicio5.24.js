@@ -1,11 +1,16 @@
+//creo la clase
 class Pelicula {
+  //creo el constructor
   constructor(nombre, anoEstreno, duracion, genero, actoresImportantes = []) {
     this._nombre = nombre;
     this._anoEstreno = anoEstreno;
     this._duracion = duracion;
     this._genero = genero;
+    //hago que solo coja los 6 primeros actores
     this._actoresImportantes = actoresImportantes.slice(0, 6);
   }
+
+  //hago los getters y los setters de los atributos de la clase
   get nombre() {
     return this._nombre;
   }
@@ -47,7 +52,7 @@ class Pelicula {
   }
 }
 
-const movie = new Pelicula("NombrePelicula", 2022, 120, "Género", [
+const pelicula1 = new Pelicula("Forest Gump", 2000, 120, "Drama", [
   "Actor1",
   "Actor2",
   "Actor3",
@@ -55,3 +60,13 @@ const movie = new Pelicula("NombrePelicula", 2022, 120, "Género", [
   "Actor5",
   "Actor6",
 ]);
+
+//pruebo a gestionar la informacion
+console.log(pelicula1.nombre);
+pelicula1.nombre = "El Magon de Oz";
+
+console.log(pelicula1.nombre);
+console.log(pelicula1.anoEstreno);
+pelicula1.anoEstreno = 1989;
+
+console.log(pelicula1.anoEstreno);
