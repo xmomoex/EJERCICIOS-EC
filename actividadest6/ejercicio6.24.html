@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="filas">Número de Filas:</label>
+      <input type="number" id="filas" min="1" />
+    </div>
+    <div>
+      <label for="columnas">Número de Columnas:</label>
+      <input type="number" id="columnas" min="1" />
+    </div>
+    <button onclick="generarTabla()">Generar Tabla</button>
+
+    <table id="tabla"></table>
+    <script src="ejercicio6.24.js"></script>
+  </body>
+</html>
