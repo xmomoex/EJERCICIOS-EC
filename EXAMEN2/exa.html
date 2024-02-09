@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 y Medio</title>
+    <style>
+      #jugador,
+      #dealer {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>7 y Medio</h1>
+    <div id="jugador"></div>
+    <div id="dealer"></div>
+    <button onclick="nuevaCarta()">Nueva Carta</button>
+    <button onclick="terminarJuego()">Terminar Juego</button>
+    <script>
+      // Función para crear una baraja de cartas
+      function crearBaraja() {
+        const palos = ["Corazones", "Diamantes", "Tréboles", "Picas"];
+        const valores = [
+          "As",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "Sota",
+          "Caballo",
+          "Rey",
+        ];
+        const baraja = [];
+        for (let palo of palos) {
+          for (let valor of valores) {
+            let puntaje = parseInt(valor) || (valor !== "As" ? 0.5 : 1); // As vale 1 u 11
+            baraja.push({ valor, palo, puntaje });
+          }
+        }
+        return baraja;
+      }
+
+      // Función para barajar la baraja
+      function barajar(baraja) {
+        for (let i = baraja.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [baraja[i], baraja[j]] = [baraja[j], baraja[i]];
+        }
+        return baraja;
+      }
+
+      // Función para calcular el valor total de la mano
+      function calcularValorTotal(mano) {
+        let valorTotal = 0;
+        let ases = 0;
+        for (let carta of mano) {
+          valorTotal += carta.puntaje;
+          if (carta.valor === "As") {
+            ases++;
+          }
+        }
+        // Ajustar el valor de los ases si es necesario
+        while (ases > 0 && valorTotal > 7.5) {
+          valorTotal -= 0.5;
+          ases--;
+        }
+        return valorTotal;
+      }
+
+      let baraja = barajar(crearBaraja());
+      let jugador = [];
+      let dealer = [];
+
+      // Función para repartir una carta al jugador
+      function nuevaCarta() {
+        let carta = baraja.pop();
+        jugador.push(carta);
+        mostrarMano(jugador, "jugador");
+        if (calcularValorTotal(jugador) > 7.5) {
+          terminarJuego();
+        }
+      }
+
+      // Función para terminar el juego
+      function terminarJuego() {
+        // El dealer toma cartas hasta que su mano sume 5.5 o más
+        while (calcularValorTotal(dealer) < 5.5) {
+          dealer.push(baraja.pop());
+        }
+        mostrarMano(dealer, "dealer");
+        mostrarResultado();
+      }
+
+      // Función para mostrar la mano de un jugador
+      function mostrarMano(mano, elemento) {
+        let divMano = document.getElementById(elemento);
+        divMano.innerHTML = `<h3>Mano de ${
+          elemento.charAt(0).toUpperCase() + elemento.slice(1)
+        }</h3>`;
+        mano.forEach((carta) => {
+          divMano.innerHTML += `${carta.valor} de ${carta.palo}<br>`;
+        });
+        divMano.innerHTML += `<strong>Total: ${calcularValorTotal(
+          mano
+        )}</strong>`;
+      }
+
+      // Función para mostrar el resultado del juego
+      function mostrarResultado() {
+        let valorJugador = calcularValorTotal(jugador);
+        let valorDealer = calcularValorTotal(dealer);
+        let resultado;
+        if (
+          valorJugador > 7.5 ||
+          (valorDealer <= 7.5 && valorDealer > valorJugador)
+        ) {
+          resultado = "¡Has perdido!";
+        } else if (valorJugador === valorDealer) {
+          resultado = "Empate";
+        } else {
+          resultado = "¡Has ganado!";
+        }
+        alert(`Resultado: ${resultado}`);
+      }
+
+      // Inicializar el juego mostrando las dos primeras cartas del jugador y del dealer
+      nuevaCarta();
+      nuevaCarta();
+      mostrarMano([baraja.pop()], "dealer");
+    </script>
+  </body>
+</html>

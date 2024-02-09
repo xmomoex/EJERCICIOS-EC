@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 y Medio</title>
+    <style>
+      #cartasJugador,
+      #cartasBanca {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>7 y Medio</h1>
+    <div id="puntuaciones">
+      <h3>Puntuaciones</h3>
+      <p>Jugador: <span id="puntuacionJugador">0</span></p>
+      <p>Banca: <span id="puntuacionBanca">0</span></p>
+    </div>
+    <div id="cartasJugador" class="cartas"></div>
+    <div id="cartasBanca" class="cartas"></div>
+    <div id="mensaje"></div>
+    <button id="nuevaCarta">Nueva Carta</button>
+    <button id="plantarse">Plantarse</button>
+    <script>
+      let baraja = [];
+      let cartasRestantes = [];
+      let puntajeJugador = 0;
+      let puntajeBanca = 0;
+
+      function crearBaraja() {
+        const palos = ["Corazones", "Diamantes", "Tréboles", "Picas"];
+        const valores = [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "Sota",
+          "Caballo",
+          "Rey",
+        ];
+        for (let palo of palos) {
+          for (let valor of valores) {
+            let puntaje = parseInt(valor) || (valor !== "As" ? 0.5 : 1);
+            baraja.push({ valor, palo, puntaje });
+          }
+        }
+        cartasRestantes = [...baraja];
+      }
+
+      function barajar() {
+        for (let i = baraja.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [baraja[i], baraja[j]] = [baraja[j], baraja[i]];
+        }
+      }
+
+      function obtenerCartaAleatoria() {
+        const indice = Math.floor(Math.random() * cartasRestantes.length);
+        const carta = cartasRestantes.splice(indice, 1)[0];
+        return carta;
+      }
+
+      function mostrarCarta(carta, jugador) {
+        let divJugador = document.getElementById(
+          jugador === "jugador" ? "cartasJugador" : "cartasBanca"
+        );
+        let nuevaCarta = document.createElement("div");
+        nuevaCarta.textContent = `${carta.valor} de ${carta.palo}`;
+        divJugador.appendChild(nuevaCarta);
+      }
+
+      function calcularPuntuacion(mano) {
+        let puntuacion = 0;
+        for (let carta of mano) {
+          puntuacion += carta.puntaje;
+        }
+        return puntuacion;
+      }
+
+      function mostrarMensaje(mensaje) {
+        document.getElementById("mensaje").textContent = mensaje;
+      }
+
+      function pedirCarta() {
+        const carta = obtenerCartaAleatoria();
+        mostrarCarta(carta, "jugador");
+
+        puntajeJugador += carta.puntaje;
+        document.getElementById("puntuacionJugador").textContent =
+          puntajeJugador;
+
+        if (puntajeJugador >= 7.5) {
+          mostrarMensaje("¡Has alcanzado o superado 7.5!");
+          document.getElementById("nuevaCarta").disabled = true;
+          document.getElementById("plantarse").disabled = true;
+        }
+      }
+
+      function jugarBanca() {
+        while (puntajeBanca < puntajeJugador && puntajeBanca <= 7.5) {
+          const carta = obtenerCartaAleatoria();
+          mostrarCarta(carta, "banca");
+
+          puntajeBanca += carta.puntaje;
+          document.getElementById("puntuacionBanca").textContent = puntajeBanca;
+        }
+
+        if (puntajeBanca > 7.5) {
+          mostrarMensaje("¡La banca se ha pasado de 7.5! ¡Has ganado!");
+        } else if (puntajeBanca === puntajeJugador) {
+          mostrarMensaje("¡Empate con la banca!");
+        } else {
+          mostrarMensaje("¡La banca ha ganado!");
+        }
+        document.getElementById("nuevaCarta").disabled = true;
+        document.getElementById("plantarse").disabled = true;
+      }
+
+      function plantarse() {
+        jugarBanca();
+      }
+
+      document
+        .getElementById("nuevaCarta")
+        .addEventListener("click", pedirCarta);
+      document.getElementById("plantarse").addEventListener("click", plantarse);
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "f") {
+          location.reload();
+        }
+      });
+
+      crearBaraja();
+      barajar();
+      pedirCarta();
+    </script>
+  </body>
+</html>

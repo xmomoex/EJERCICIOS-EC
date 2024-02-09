@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 y Medio</title>
+    <style>
+      #jugador,
+      #banca {
+        margin-bottom: 20px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>7 y Medio</h1>
+    <div id="puntuaciones">
+      <h3>Puntuaciones</h3>
+      <p>Jugador: <span id="puntuacionJugador">0</span></p>
+      <p>Banca: <span id="puntuacionBanca">0</span></p>
+    </div>
+    <div id="jugador" class="cartas"></div>
+    <div id="banca" class="cartas"></div>
+    <div id="acciones">
+      <button id="nuevaCarta">Nueva Carta</button>
+      <button id="plantarse">Plantarse</button>
+    </div>
+    <script>
+      let baraja = [];
+      let jugador = [];
+      let banca = [];
+      let puntuacionJugador = 0;
+      let puntuacionBanca = 0;
+
+      // Función para crear una baraja de cartas
+      function crearBaraja() {
+        const palos = ["Corazones", "Diamantes", "Tréboles", "Picas"];
+        const valores = [
+          "As",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "Sota",
+          "Caballo",
+          "Rey",
+        ];
+        for (let palo of palos) {
+          for (let valor of valores) {
+            let puntaje = parseInt(valor) || (valor !== "As" ? 0.5 : 1); // As vale 1 u 11
+            baraja.push({ valor, palo, puntaje });
+          }
+        }
+      }
+
+      // Función para barajar la baraja
+      function barajar() {
+        for (let i = baraja.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [baraja[i], baraja[j]] = [baraja[j], baraja[i]];
+        }
+      }
+
+      // Función para repartir una carta a un jugador
+      function nuevaCarta(jugador) {
+        let carta = baraja.pop();
+        jugador.push(carta);
+        mostrarCarta(carta, jugador);
+      }
+
+      // Función para mostrar una carta en el DOM
+      function mostrarCarta(carta, jugador) {
+        let divJugador = document.getElementById(
+          jugador === jugador ? "jugador" : "banca"
+        );
+        let nuevaCarta = document.createElement("div");
+        nuevaCarta.textContent = `${carta.valor} de ${carta.palo}`;
+        divJugador.appendChild(nuevaCarta);
+      }
+
+      // Función para calcular la puntuación total de una mano
+      function calcularPuntuacion(mano) {
+        let puntuacion = 0;
+        for (let carta of mano) {
+          puntuacion += carta.puntaje;
+        }
+        return puntuacion;
+      }
+
+      // Función para jugar el turno de la banca
+      function turnoBanca() {
+        let puntuacionJugador = calcularPuntuacion(jugador);
+        while (
+          calcularPuntuacion(banca) < puntuacionJugador &&
+          calcularPuntuacion(banca) <= 7.5
+        ) {
+          nuevaCarta(banca);
+        }
+      }
+
+      // Función para actualizar las puntuaciones en el DOM
+      function actualizarPuntuaciones() {
+        document.getElementById("puntuacionJugador").textContent =
+          puntuacionJugador;
+        document.getElementById("puntuacionBanca").textContent =
+          puntuacionBanca;
+      }
+
+      // Función para manejar el evento de plantarse
+      function plantarse() {
+        document.getElementById("nuevaCarta").disabled = true;
+        document.getElementById("plantarse").disabled = true;
+        turnoBanca();
+        determinarGanador();
+      }
+
+      // Función para determinar al ganador
+      function determinarGanador() {
+        let resultado;
+        if (
+          puntuacionJugador > 7.5 ||
+          (puntuacionBanca <= 7.5 && puntuacionBanca > puntuacionJugador)
+        ) {
+          resultado = "¡Gana la Banca!";
+        } else if (puntuacionJugador === puntuacionBanca) {
+          resultado = "Empate";
+        } else {
+          resultado = "¡Gana el Jugador!";
+        }
+        alert(resultado);
+        document.getElementById("nuevaCarta").disabled = true;
+        document.getElementById("plantarse").disabled = true;
+      }
+
+      // Función para iniciar un nuevo juego
+      function nuevoJuego() {
+        baraja = [];
+        jugador = [];
+        banca = [];
+        puntuacionJugador = 0;
+        puntuacionBanca = 0;
+
+        document.getElementById("jugador").innerHTML = "";
+        document.getElementById("banca").innerHTML = "";
+
+        crearBaraja();
+        barajar();
+
+        nuevaCarta(jugador);
+        nuevaCarta(jugador);
+        nuevaCarta(banca);
+        actualizarPuntuaciones();
+
+        document.getElementById("nuevaCarta").disabled = false;
+        document.getElementById("plantarse").disabled = false;
+      }
+
+      // Event listeners
+      document
+        .getElementById("nuevaCarta")
+        .addEventListener("click", function () {
+          nuevaCarta(jugador);
+          puntuacionJugador = calcularPuntuacion(jugador);
+          actualizarPuntuaciones();
+          if (puntuacionJugador >= 7.5) {
+            plantarse();
+          }
+        });
+
+      document.getElementById("plantarse").addEventListener("click", plantarse);
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "f") {
+          location.reload();
+        }
+      });
+
+      // Iniciar el juego
+      nuevoJuego();
+    </script>
+  </body>
+</html>
