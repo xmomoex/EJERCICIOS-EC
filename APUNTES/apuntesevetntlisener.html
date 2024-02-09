@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+         * **Event Listeners: Apuntes Básicos**
+
+Los event listeners (escuchadores de eventos) son bloques de código que esperan y responden a acciones específicas del usuario o del sistema, conocidas como eventos. Estos eventos pueden ser acciones del usuario, como hacer clic en un botón, mover el mouse sobre un elemento, o eventos generados por el sistema, como la carga de una página web o el cambio de tamaño de la ventana del navegador.
+
+**1. Tipos de Eventos:**
+
+   - **Eventos del Usuario:** Incluyen acciones como hacer clic, desplazarse, mover el mouse, presionar una tecla, etc.
+   
+   - **Eventos del Sistema:** Son eventos generados por el sistema, como la carga completa de una página web (`load`), el cambio de tamaño de la ventana (`resize`), etc.
+   
+**2. Implementación de Event Listeners:**
+
+   - **En HTML:** Los event listeners se pueden agregar directamente en las etiquetas HTML utilizando atributos específicos como `onclick`, `onmouseover`, etc.
+   
+   - **En JavaScript:** Se pueden agregar mediante métodos proporcionados por el objeto `addEventListener()`, que se adjunta al elemento que desea escuchar el evento.
+   
+**3. Sintaxis de `addEventListener()` en JavaScript:**
+
+```javascript
+elemento.addEventListener(evento, función [, opciones]);
+```
+
+- **elemento:** Es el elemento HTML al que se agrega el event listener.
+- **evento:** Especifica el tipo de evento al que se debe responder (por ejemplo, 'click', 'mouseover', 'submit', etc.).
+- **función:** La función que se ejecutará cuando se active el evento.
+- **opciones (opcional):** Un objeto que especifica opciones adicionales para el event listener, como si el evento debe ser capturado o burbujeado.
+
+**4. Ejemplo de Implementación en JavaScript:**
+
+```javascript
+// Obtener el elemento por su ID
+var boton = document.getElementById("miBoton");
+
+// Agregar un event listener al botón
+boton.addEventListener("click", function() {
+    alert("¡Has hecho clic en el botón!");
+});
+```
+
+**5. Beneficios de Usar Event Listeners:**
+
+   - Separación de preocupaciones: Permite separar el comportamiento del código HTML y el código JavaScript.
+   
+   - Flexibilidad: Puede adjuntar varios event listeners a un mismo elemento, lo que permite manejar diferentes eventos de manera independiente.
+   
+   - Mejora del rendimiento: Al utilizar event listeners, puede controlar selectivamente qué partes del código deben ejecutarse en respuesta a eventos específicos, lo que puede mejorar el rendimiento de la aplicación.
+
+**6. Consideraciones Adicionales:**
+
+   - Es importante tener en cuenta el contexto y el ciclo de vida de los elementos HTML al adjuntar event listeners para evitar posibles problemas de rendimiento o comportamiento no deseado.
+   
+   - Al trabajar con event listeners, es fundamental comprender el flujo de eventos en la aplicación web y cómo se propagan los eventos a través del DOM.
+
+**Conclusión:**
+
+Los event listeners son una parte fundamental del desarrollo web moderno, permitiendo una interactividad dinámica entre el usuario y la aplicación. Comprender cómo funcionan y cómo implementarlos correctamente es esencial para crear experiencias web interactivas y receptivas.
+        */
+    </script>
+    <button onclick="saludar()">Haz clic aquí</button>
+
+    <script>
+      function saludar() {
+        alert("¡Hola Mundo!");
+      }
+    </script>
+    <button id="miBoton">Haz clic aquí</button>
+
+    <script>
+      // Obtener el botón por su ID
+      var boton = document.getElementById("miBoton");
+
+      // Agregar un event listener al botón
+      boton.addEventListener("click", function () {
+        alert("¡Has hecho clic en el botón!");
+      });
+    </script>
+    <input type="text" id="nombreInput" />
+
+    <script>
+      // Obtener el input por su ID
+      var input = document.getElementById("nombreInput");
+
+      // Agregar un event listener para el evento 'keypress'
+      input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          alert("Presionaste Enter. ¡Hola " + input.value + "!");
+        }
+      });
+    </script>
+    <div
+      id="miDiv"
+      style="width: 100px; height: 100px; background-color: lightblue"
+    ></div>
+
+    <script>
+      // Obtener el div por su ID
+      var div = document.getElementById("miDiv");
+
+      // Agregar un event listener para el evento 'mouseover'
+      div.addEventListener("mouseover", function () {
+        div.style.backgroundColor = "lightgreen";
+      });
+
+      // Agregar un event listener para el evento 'mouseout'
+      div.addEventListener("mouseout", function () {
+        div.style.backgroundColor = "lightblue";
+      });
+    </script>
+    <script>
+      /////////////////////////////////////////////////////////
+      // Obtener un elemento por su ID
+      var miElemento = document.getElementById("miID");
+
+      // Obtener elementos por su clase
+      var elementos = document.getElementsByClassName("miClase");
+
+      // Obtener elementos por su etiqueta
+      var parrafos = document.getElementsByTagName("p");
+
+      // Obtener un elemento con un selector CSS
+      var primerDiv = document.querySelector("div");
+      // Cambiar el contenido de un elemento
+      miElemento.innerHTML = "Nuevo contenido";
+
+      // Cambiar un atributo
+      miElemento.setAttribute("class", "nuevaClase");
+
+      // Obtener y cambiar estilos
+      miElemento.style.backgroundColor = "lightblue";
+      miElemento.style.color = "black";
+      // Crear un nuevo elemento
+      var nuevoElemento = document.createElement("div");
+
+      // Agregar texto al nuevo elemento
+      nuevoElemento.textContent = "Nuevo elemento creado";
+
+      // Agregar el nuevo elemento al DOM
+      document.body.appendChild(nuevoElemento);
+
+      // Eliminar un elemento existente
+      var elementoAEliminar = document.getElementById("elementoEliminar");
+      elementoAEliminar.parentNode.removeChild(elementoAEliminar);
+      // Agregar un event listener a un botón
+      var boton = document.getElementById("miBoton");
+      boton.addEventListener("click", function () {
+        alert("¡Hiciste clic en el botón!");
+      });
+      // Iterar sobre elementos por su clase
+      var elementos = document.getElementsByClassName("items");
+      for (var i = 0; i < elementos.length; i++) {
+        console.log(elementos[i].textContent);
+      }
+
+      // O utilizando forEach
+      elementos.forEach(function (elemento) {
+        console.log(elemento.textContent);
+      });
+      // Obtener el valor de un campo de texto
+      var valorInput = document.getElementById("miInput").value;
+
+      // Obtener el valor de una opción seleccionada en un select
+      var valorSelect = document.getElementById("miSelect").value;
+
+      // Enviar datos a través de AJAX
+      // Código AJAX aquí
+      /*********************************************
+Modelo de Objetos del Cliente (DOM) en JavaScript: Apuntes Prácticos
+*********************************************/
+
+      // 1. Acceder a Elementos HTML:
+      var miElemento = document.getElementById("miID");
+      var elementos = document.getElementsByClassName("miClase");
+      var parrafos = document.getElementsByTagName("p");
+      var primerDiv = document.querySelector("div");
+
+      // 2. Manipular Contenido y Estilos:
+      miElemento.innerHTML = "Nuevo contenido";
+      miElemento.setAttribute("class", "nuevaClase");
+      miElemento.style.backgroundColor = "lightblue";
+      miElemento.style.color = "black";
+
+      // 3. Crear y Eliminar Elementos:
+      var nuevoElemento = document.createElement("div");
+      nuevoElemento.textContent = "Nuevo elemento creado";
+      document.body.appendChild(nuevoElemento);
+      var elementoAEliminar = document.getElementById("elementoEliminar");
+      elementoAEliminar.parentNode.removeChild(elementoAEliminar);
+
+      // 4. Eventos y Event Listeners:
+      var boton = document.getElementById("miBoton");
+      boton.addEventListener("click", function () {
+        alert("¡Hiciste clic en el botón!");
+      });
+
+      // 5. Iterar sobre Elementos:
+      var elementos = document.getElementsByClassName("items");
+      for (var i = 0; i < elementos.length; i++) {
+        console.log(elementos[i].textContent);
+      }
+
+      // 6. Manipulación de Formularios:
+      var valorInput = document.getElementById("miInput").value;
+      var valorSelect = document.getElementById("miSelect").value;
+
+      // 7. Eventos de Teclado:
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          alert("Presionaste Enter en el teclado.");
+        }
+      });
+
+      // 8. Eventos de Mouse:
+      var miElemento = document.getElementById("miElemento");
+      miElemento.addEventListener("click", function () {
+        alert("Hiciste clic en el elemento.");
+      });
+      miElemento.addEventListener("mouseover", function () {
+        console.log("El mouse está sobre el elemento.");
+      });
+
+      // 9. Iterar sobre Nodos del DOM:
+      var contenedor = document.getElementById("miContenedor");
+      for (var i = 0; i < contenedor.childNodes.length; i++) {
+        console.log(contenedor.childNodes[i].textContent);
+      }
+
+      // 10. Cambiar Clases CSS:
+      miElemento.classList.add("nuevaClase");
+      miElemento.classList.remove("claseExistente");
+      miElemento.classList.toggle("claseToggle");
+
+      // 11. Acceder al Documento y la Ventana:
+      var alturaVentana = window.innerHeight;
+      var anchoVentana = window.innerWidth;
+      var urlActual = window.location.href;
+
+      // 12. Manipulación de Estilos Avanzada:
+      miElemento.style.backgroundColor = "red";
+      var nuevaClaseCSS = document.createElement("style");
+      nuevaClaseCSS.innerHTML = ".nuevoEstilo { color: blue; }";
+      document.head.appendChild(nuevaClaseCSS);
+      miElemento.classList.add("nuevoEstilo");
+    </script>
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ejercicio 26</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+          }
+
+          .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 100px);
+            grid-template-rows: repeat(5, 100px);
+            gap: 5px;
+          }
+
+          .card {
+            background-color: black;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="grid-container" id="gridContainer"></div>
+
+        <script src="ejercicio26.js"></script>
+      </body>
+    </html>
+    <script>
+              / Selecciona el contenedor del tablero del juego
+      const gridContainer = document.getElementById('gridContainer');
+
+      // Array de colores para las cartas
+      const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'brown', 'cyan', 'magenta', 'lime', 'teal', 'navy', 'violet', 'coral'];
+
+      // Array para almacenar las cartas volteadas
+      let flippedCards = [];
+
+      // Número de pares de cartas emparejadas
+      let matchedPairs = 0;
+
+      // Número de movimientos realizados
+      let moves = 0;
+
+      // Tiempo de inicio del juego
+      let startTime;
+
+      // Función para crear el tablero del juego
+      function createGrid() {
+        // Duplica el array de colores y los baraja
+        const shuffledColors = shuffleArray(colors.concat(colors));
+
+        // Por cada color en el array, crea una carta y la agrega al tablero
+        shuffledColors.forEach(color => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+          card.dataset.color = color;
+          card.addEventListener('click', flipCard);
+          gridContainer.appendChild(card);
+        });
+      }
+
+      // Función para voltear una carta al hacer clic en ella
+      function flipCard() {
+        // Verifica si hay menos de 2 cartas volteadas y si la carta no está emparejada
+        if (flippedCards.length < 2 && !flippedCards.includes(this) && !this.classList.contains('matched')) {
+          // Voltea la carta y la agrega al array de cartas volteadas
+          this.style.backgroundColor = this.dataset.color;
+          flippedCards.push(this);
+
+          // Si hay 2 cartas volteadas
+          if (flippedCards.length === 2) {
+            moves++; // Incrementa el contador de movimientos
+
+            // Si las cartas son del mismo color
+            if (flippedCards[0].dataset.color === flippedCards[1].dataset.color) {
+              matchedPairs++; // Incrementa el contador de pares emparejados
+              flippedCards[0].classList.add('matched');
+              flippedCards[1].classList.add('matched');
+              flippedCards = [];
+
+              // Si se emparejan todas las cartas, se muestra un mensaje de victoria
+              if (matchedPairs === colors.length) {
+                const endTime = new Date();
+                const elapsedTime = (endTime - startTime) / 1000;
+                alert(`¡Felicidades! Has ganado en ${moves} movimientos y ${elapsedTime} segundos.`);
+              }
+            } else {
+              // Si las cartas no son del mismo color, se vuelven a voltear después de un segundo
+              setTimeout(() => {
+                flippedCards[0].style.backgroundColor = 'black';
+                flippedCards[1].style.backgroundColor = 'black';
+                flippedCards = [];
+              }, 1000);
+            }
+          } else if (flippedCards.length === 1) {
+            moves++; // Incrementa el contador de movimientos
+          }
+        }
+      }
+
+      // Función para barajar un array utilizando el algoritmo de Fisher-Yates
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      // Inicia el juego creando el tablero y registrando el tiempo de inicio
+      createGrid();
+      startTime = new Date();
+    </script>
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ejercicio 21</title>
+      </head>
+
+      <body>
+        <h2>Lista de Elementos</h2>
+        <ul id="elementos-lista">
+          <!-- Aquí se añadirán dinámicamente los elementos -->
+        </ul>
+        <button onclick="ordenarLista()">Ordenar Lista</button>
+        <button onclick="agregarElemento()">Añadir Elemento</button>
+        <script>
+          // Función para añadir un nuevo elemento a la lista.
+          function agregarElemento() {
+            var nuevoElemento = prompt("Ingrese el nuevo elemento:");
+            if (nuevoElemento != null && nuevoElemento != "") {
+              var lista = document.getElementById("elementos-lista");
+              var nuevoItem = document.createElement("li");
+              nuevoItem.innerHTML =
+                nuevoElemento +
+                " <button onclick='eliminarElemento(this)'>Eliminar</button>";
+              lista.appendChild(nuevoItem);
+            }
+          }
+
+          // Función para ordenar toda la lista.
+          function ordenarLista() {
+            // Obtener el identificador a la lista.
+            let lista = document.getElementById("elementos-lista");
+
+            // Obtener los elementos de la lista como un arreglo.
+            let elementosLista = Array.from(lista.children);
+
+            // Ordenamos la lista entera.
+            elementosLista.sort(function (a, b) {
+              return a.textContent.localeCompare(b.textContent);
+            });
+
+            // Limpiamos la lista actual.
+            lista.innerHTML = "";
+
+            // Volvemos a agregar los elementos ordenados a la lista.
+            elementosLista.forEach(function (elemento) {
+              lista.appendChild(elemento);
+            });
+          }
+
+          // Función para eliminar un elemento de la lista.
+          function eliminarElemento(boton) {
+            var elementoAEliminar = boton.parentNode;
+            elementoAEliminar.parentNode.removeChild(elementoAEliminar);
+          }
+        </script>
+      </body>
+    </html>
+  </body>
+</html>
