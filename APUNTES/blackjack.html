@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlackJack</title>
+    <style>
+      #cartasJugador,
+      #cartasBanca {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BlackJack</h1>
+    <div id="puntuaciones">
+      <h3>Puntuaciones</h3>
+      <p>Jugador: <span id="puntuacionJugador">0</span></p>
+      <div id="cartasJugador" class="cartas"></div>
+      <p>Banca: <span id="puntuacionBanca">0</span></p>
+      <div id="cartasBanca" class="cartas"></div>
+    </div>
+    <div id="mensaje"></div>
+    <button id="nuevaCarta">Nueva Carta</button>
+    <button id="plantarse">Plantarse</button>
+    <script>
+      // Variables del juego
+      let baraja = [];
+      let cartasRestantes = [];
+      let puntajeJugador = 0;
+      let puntajeBanca = 0;
+
+      // Función para crear la baraja
+      function crearBaraja() {
+        const palos = ["Corazones", "Diamantes", "Tréboles", "Picas"];
+        const valores = [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "J",
+          "Q",
+          "K",
+          "A",
+        ];
+        for (let palo of palos) {
+          for (let valor of valores) {
+            let puntaje = parseInt(valor) || (valor === "A" ? 11 : 10);
+            baraja.push({ valor, palo, puntaje });
+          }
+        }
+        cartasRestantes = [...baraja];
+      }
+
+      // Función para barajar las cartas
+      function barajar() {
+        for (let i = baraja.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [baraja[i], baraja[j]] = [baraja[j], baraja[i]];
+        }
+      }
+
+      // Función para obtener una carta aleatoria
+      function obtenerCartaAleatoria() {
+        const indice = Math.floor(Math.random() * cartasRestantes.length);
+        const carta = cartasRestantes.splice(indice, 1)[0];
+        return carta;
+      }
+
+      // Función para mostrar una carta en la interfaz
+      function mostrarCarta(carta, jugador) {
+        let divJugador = document.getElementById(
+          jugador === "jugador" ? "cartasJugador" : "cartasBanca"
+        );
+        let nuevaCarta = document.createElement("div");
+        nuevaCarta.textContent = `${carta.valor} de ${carta.palo}`;
+        divJugador.appendChild(nuevaCarta);
+      }
+
+      // Función para calcular la puntuación de una mano
+      function calcularPuntuacion(mano) {
+        let puntuacion = 0;
+        for (let carta of mano) {
+          puntuacion += carta.puntaje;
+        }
+        return puntuacion;
+      }
+
+      // Función para mostrar un mensaje en la interfaz
+      function mostrarMensaje(mensaje) {
+        document.getElementById("mensaje").textContent = mensaje;
+      }
+
+      // Función para pedir una carta
+      function pedirCarta() {
+        const carta = obtenerCartaAleatoria();
+        mostrarCarta(carta, "jugador");
+
+        puntajeJugador += carta.puntaje;
+        document.getElementById("puntuacionJugador").textContent =
+          puntajeJugador;
+
+        if (puntajeJugador > 21) {
+          mostrarMensaje("¡Te has pasado de 21! ¡La banca gana!");
+          document.getElementById("nuevaCarta").disabled = true;
+          document.getElementById("plantarse").disabled = true;
+        }
+      }
+
+      // Función para que el dealer juegue
+      function jugarBanca() {
+        while (puntajeBanca < 17) {
+          const carta = obtenerCartaAleatoria();
+          mostrarCarta(carta, "banca");
+
+          puntajeBanca += carta.puntaje;
+          document.getElementById("puntuacionBanca").textContent = puntajeBanca;
+        }
+
+        if (puntajeBanca > 21 || puntajeJugador > puntajeBanca) {
+          mostrarMensaje("¡Has ganado!");
+        } else if (puntajeBanca === puntajeJugador) {
+          mostrarMensaje("¡Empate!");
+        } else {
+          mostrarMensaje("¡La banca ha ganado!");
+        }
+        document.getElementById("nuevaCarta").disabled = true;
+        document.getElementById("plantarse").disabled = true;
+      }
+
+      // Función para plantarse
+      function plantarse() {
+        jugarBanca();
+      }
+
+      // Añadir event listeners a los botones
+      document
+        .getElementById("nuevaCarta")
+        .addEventListener("click", pedirCarta);
+      document.getElementById("plantarse").addEventListener("click", plantarse);
+
+      // Crear la baraja y barajar para empezar el juego
+      crearBaraja();
+      barajar();
+    </script>
+  </body>
+</html>
