@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8.29</title>
+  </head>
+  <body>
+    <h1>Datos del Vehículo</h1>
+    <div id="vehicleData"></div>
+    <script>
+      /*
+        Crea un programa en el que usando la API Web Storage consigas
+        guardar en el cliente un JSON que contiene informacion sobre 
+        un vehiculo (marca, modelo, numero de bastidor, cilindrada,
+        numero de puertas, color y algunos datos del propietario, como
+        nombre, apellidos, direccion, telefono y correo). Tras el 
+        almacenamiento, debes leer toda la informacion guardada y mostrarla
+        en pantalla en formato HTML. Al cerrar el navegador toda la
+        informacion almacenada debe ser retirada de la memoria
+        */
+      let vehicleInfo = {
+        marca: "Toyota",
+        modelo: "Corolla",
+        numero_bastidor: "123456789",
+        cilindrada: "2000cc",
+        numero_puertas: 4,
+        color: "Negro",
+        propietario: {
+          nombre: "Juan",
+          apellidos: "Gómez",
+          direccion: "Calle Principal 123",
+          telefono: "123-456-789",
+          correo: "juan@example.com",
+        },
+      };
+
+      //Almacenar datos en localStorage
+      localStorage.setItem("vehicleInfo", JSON.stringify(vehicleInfo));
+
+      //Leer datos del vehículo desde localStorage y mostrarlos en la página
+      let storedVehicleInfo = JSON.parse(localStorage.getItem("vehicleInfo"));
+      let vehicleDataContainer = document.getElementById("vehicleData");
+      let html =
+        "<p><strong>Marca:</strong> " + storedVehicleInfo.marca + "</p>";
+      html +=
+        "<p><strong>Modelo:</strong> " + storedVehicleInfo.modelo + "</p>";
+      html +=
+        "<p><strong>Número de bastidor:</strong> " +
+        storedVehicleInfo.numero_bastidor +
+        "</p>";
+      html +=
+        "<p><strong>Cilindrada:</strong> " +
+        storedVehicleInfo.cilindrada +
+        "</p>";
+      html +=
+        "<p><strong>Número de puertas:</strong> " +
+        storedVehicleInfo.numero_puertas +
+        "</p>";
+      html += "<p><strong>Color:</strong> " + storedVehicleInfo.color + "</p>";
+      html += "<h2>Datos del propietario</h2>";
+      html +=
+        "<p><strong>Nombre:</strong> " +
+        storedVehicleInfo.propietario.nombre +
+        "</p>";
+      html +=
+        "<p><strong>Apellidos:</strong> " +
+        storedVehicleInfo.propietario.apellidos +
+        "</p>";
+      html +=
+        "<p><strong>Dirección:</strong> " +
+        storedVehicleInfo.propietario.direccion +
+        "</p>";
+      html +=
+        "<p><strong>Teléfono:</strong> " +
+        storedVehicleInfo.propietario.telefono +
+        "</p>";
+      html +=
+        "<p><strong>Correo:</strong> " +
+        storedVehicleInfo.propietario.correo +
+        "</p>";
+      vehicleDataContainer.innerHTML = html;
+
+      //Este window limpia con localStorage al cerrar la ventana del navegador
+      window.addEventListener("beforeunload", function () {
+        localStorage.removeItem("vehicleInfo");
+      });
+    </script>
+  </body>
+</html>
