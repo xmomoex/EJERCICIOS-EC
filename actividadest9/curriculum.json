@@ -1,11 +1,11 @@
 {
-  "nombre": "Juan Pérez",
+  "nombre": "Moisés Moreno Exojo",
   "titulo": "Desarrollador Web",
   "resumen": "Desarrollador web con experiencia en tecnologías frontend y backend.",
   "experiencia": [
     {
       "puesto": "Desarrollador Full Stack",
-      "empresa": "TechCorp",
+      "empresa": "Code +",
       "periodo": "Enero 2018 - Presente",
       "descripcion": "Desarrollo y mantenimiento de aplicaciones web utilizando JavaScript, Node.js, React y MongoDB."
     },
@@ -18,14 +18,9 @@
   ],
   "educacion": [
     {
-      "titulo": "Ingeniería en Informática",
-      "institucion": "Universidad Nacional",
+      "titulo": "Grado en Desarrolo  de Aplicaciones Web",
+      "institucion": "Ies Mar de Cdiz",
       "periodo": "2012 - 2016"
-    },
-    {
-      "titulo": "Curso Avanzado de Desarrollo Web",
-      "institucion": "Online University",
-      "periodo": "2017 - 2018"
     }
   ],
   "habilidades": [

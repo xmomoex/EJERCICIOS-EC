@@ -36,12 +36,12 @@
     </style>
   </head>
   <body>
-    <h1>Currículum de Juan Pérez</h1>
+    <h1>Currículum de Moisés Moreno Exojo</h1>
     <div id="contenido"></div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        fetch("curriculum.json")
+        fetch("./curriculum.json")
           .then((response) => {
             if (!response.ok) {
               throw new Error("Error al cargar el archivo JSON");
