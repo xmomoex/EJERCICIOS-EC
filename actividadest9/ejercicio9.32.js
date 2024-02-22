@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Función para hacer una solicitud a la API de Star Wars
+  // función para hacer una solicitud a la API de Star Wars
   function obtenerInformacion(url) {
     return fetch(url)
       .then((response) => response.json())
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "https://swapi.dev/api/starships/2/",
   ];
 
-  // Realizar las tres solicitudes simultáneamente
+  // realizamos las tres solicitudes a la vez
   Promise.all(urls.map((url) => obtenerInformacion(url)))
     .then((results) => {
       const [personaje, planeta, nave] = results;
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.log(error));
 
-  // Función para mostrar la información en el HTML
+  // mostramos la informacion
   function mostrarInformacion(id, data) {
     const container = document.getElementById(id);
     const keys = Object.keys(data);

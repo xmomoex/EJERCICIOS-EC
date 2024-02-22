@@ -54,5 +54,5 @@ function lanzarError(opcion) {
   }
 }
 
-// Ejemplo: Lanzar error para la opción 3
+//Lanzar error para la opción 3
 lanzarError(3);

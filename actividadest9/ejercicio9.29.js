@@ -9,14 +9,13 @@ function domCargado() {
         resolve();
       });
     } else {
-      // Si el DOM ya está cargado, resolver la promesa inmediatamente
       resolve();
     }
   });
 }
 
+//cuando el dom está cargado mostraría el mensaje
 domCargado().then(() => {
-  // Una vez que el DOM esté completamente cargado, mostrar "LISTO PARA ACTUAR"
   const mensajeDiv = document.getElementById("mensaje");
   mensajeDiv.innerText = "LISTO PARA ACTUAR";
 });

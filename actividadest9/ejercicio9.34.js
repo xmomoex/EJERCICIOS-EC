@@ -1,3 +1,4 @@
+//funcion para introducir los datos
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("searchForm");
   const input = document.getElementById("searchInput");
@@ -5,20 +6,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    const searchTerm = input.value.trim();
-    if (searchTerm === "") {
+    const buscador = input.value.trim();
+    if (buscador === "") {
       alert("Por favor ingresa un término de búsqueda");
       return;
     }
-    searchItems(searchTerm);
+    searchItems(buscador);
   });
 
-  function searchItems(term) {
-    const url = `https://api.mercadolibre.com/sites/MLA/search?q=${term}`;
+  //funcion para buscar
+  function searchItems(busqueda) {
+    const url = `https://api.mercadolibre.com/sites/MLA/search?q=${busqueda}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        displayResults(data.results);
+        resultadosPantalla(data.results);
       })
       .catch((error) => {
         console.error("Error al buscar:", error);
@@ -27,13 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  function displayResults(items) {
+  //funcion para sacar los resultados por pantalla
+  function resultadosPantalla(items) {
     resultsDiv.innerHTML = "";
     if (items.length === 0) {
       resultsDiv.innerHTML = "<p>No se encontraron resultados</p>";
       return;
     }
-    const slicedItems = items.slice(0, 3); // Obtener los tres primeros resultados
+    const slicedItems = items.slice(0, 3); // obtengo los tres primeros resultados
     const resultsHTML = slicedItems
       .map(
         (item) => `

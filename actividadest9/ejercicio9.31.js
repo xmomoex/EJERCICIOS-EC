@@ -1,11 +1,11 @@
-// Función que retorna una promesa que se resuelve después de un tiempo dado
+// retorna una promesa que se resuelve después de un tiempo dado
 function esperar(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
 
-// Ejemplo de encadenamiento de acciones después de que la promesa se cumple
+// encadenamos las acciones después de que la promesa se cumple
 esperar(1000)
   .then(() => {
     console.log("Primera acción completada después de 1 segundo");

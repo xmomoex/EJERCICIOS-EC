@@ -1,10 +1,10 @@
 import Geo from "./modulos/ejercicio26.js";
 
-// Solicitar permisos de geolocalización
+// solicita permisos de geolocalización
 Geo.askPermissions()
   .then((message) => {
     console.log(message);
-    // Obtener la longitud
+    // obtener longitud
     Geo.getLongitude()
       .then((longitude) => {
         console.log("Longitud:", longitude);
@@ -13,7 +13,7 @@ Geo.askPermissions()
         console.error(error);
       });
 
-    // Obtener la latitud
+    // obtener latitud
     Geo.getLatitude()
       .then((latitude) => {
         console.log("Latitud:", latitude);
@@ -22,7 +22,7 @@ Geo.askPermissions()
         console.error(error);
       });
 
-    // Obtener la altitud
+    // obtener altitud
     Geo.getAltitude()
       .then((altitude) => {
         console.log("Altitud:", altitude);

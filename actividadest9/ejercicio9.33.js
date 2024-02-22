@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("curriculum.json")
+  fetch("./curriculum.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Error al cargar el archivo JSON");
