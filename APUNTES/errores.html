@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manejo de Errores en JavaScript</title>
+  </head>
+  <body>
+    <h1>Manejo de Errores en JavaScript</h1>
+
+    <p>
+      En JavaScript, puedes manejar errores utilizando las siguientes
+      construcciones:
+    </p>
+
+    <h2>Try...Catch</h2>
+    <pre>
+    <code>
+      try {
+        // Código que podría lanzar un error
+      } catch(error) {
+        // Bloque que se ejecuta si se produce un error
+        console.error(error);
+      }
+    </code>
+  </pre>
+
+    <h2>Throw</h2>
+    <pre>
+    <code>
+      try {
+        throw 'Este es un error personalizado';
+      } catch(error) {
+        console.error(error);
+      }
+    </code>
+  </pre>
+
+    <h2>Finally</h2>
+    <pre>
+    <code>
+      try {
+        // Código que podría lanzar un error
+      } catch(error) {
+        // Bloque que se ejecuta si se produce un error
+        console.error(error);
+      } finally {
+        // Bloque que se ejecuta siempre, con o sin error
+        console.log('Esto se ejecuta siempre');
+      }
+    </code>
+  </pre>
+
+    <h2>Tipos de Errores Comunes</h2>
+    <ul>
+      <li>
+        <strong>Error de Sintaxis:</strong> Ocurre cuando hay un error en la
+        escritura del código.
+      </li>
+      <li>
+        <strong>Error de Referencia:</strong> Ocurre al tratar de acceder a una
+        variable que no está definida.
+      </li>
+      <li>
+        <strong>Error de Tipo:</strong> Ocurre al tratar de utilizar una
+        variable o método de una manera incorrecta.
+      </li>
+      <li>
+        <strong>Error de Evaluación:</strong> Ocurre cuando se utiliza
+        <code>eval()</code> y hay un error en la evaluación.
+      </li>
+      <li>
+        <strong>Error Personalizado:</strong> Puedes lanzar tus propios errores
+        con <code>throw</code>.
+      </li>
+    </ul>
+
+    <h2>Ejemplo Completo</h2>
+    <pre>
+    <code>
+      try {
+        // Código que podría lanzar un error
+        let x = y + 10; // Error de referencia: y no está definida
+      } catch(error) {
+        console.error('Se ha producido un error:', error);
+      } finally {
+        console.log('Esto se ejecuta siempre, incluso si hay un error');
+      }
+    </code>
+  </pre>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manejo de Errores en JavaScript</title>
+  </head>
+  <body>
+    <h1>Manejo de Errores en JavaScript</h1>
+
+    <p>
+      En JavaScript, puedes manejar errores utilizando las siguientes
+      construcciones:
+    </p>
+
+    <h2>Try...Catch</h2>
+    <pre>
+    <code>
+      try {
+        // Código que podría lanzar un error
+      } catch(error) {
+        // Bloque que se ejecuta si se produce un error
+        console.error(error);
+      }
+    </code>
+  </pre>
+
+    <h2>Throw</h2>
+    <pre>
+    <code>
+      try {
+        throw 'Este es un error personalizado';
+      } catch(error) {
+        console.error(error);
+      }
+    </code>
+  </pre>
+
+    <h2>Finally</h2>
+    <pre>
+    <code>
+      try {
+        // Código que podría lanzar un error
+      } catch(error) {
+        // Bloque que se ejecuta si se produce un error
+        console.error(error);
+      } finally {
+        // Bloque que se ejecuta siempre, con o sin error
+        console.log('Esto se ejecuta siempre');
+      }
+    </code>
+  </pre>
+
+    <h2>Tipos de Errores Comunes</h2>
+    <ul>
+      <li>
+        <strong>Error de Sintaxis:</strong> Ocurre cuando hay un error en la
+        escritura del código.
+      </li>
+      <li>
+        <strong>Error de Referencia:</strong> Ocurre al tratar de acceder a una
+        variable que no está definida.
+      </li>
+      <li>
+        <strong>Error de Tipo:</strong> Ocurre al tratar de utilizar una
+        variable o método de una manera incorrecta.
+      </li>
+      <li>
+        <strong>Error de Evaluación:</strong> Ocurre cuando se utiliza
+        <code>eval()</code> y hay un error en la evaluación.
+      </li>
+      <li>
+        <strong>Error Personalizado:</strong> Puedes lanzar tus propios errores
+        con <code>throw</code>.
+      </li>
+    </ul>
+
+    <h2>Ejemplo Completo</h2>
+    <pre>
+    <code>
+      try {
+        // Código que podría lanzar un error
+        let x = y + 10; // Error de referencia: y no está definida
+      } catch(error) {
+        console.error('Se ha producido un error:', error);
+      } finally {
+        console.log('Esto se ejecuta siempre, incluso si hay un error');
+      }
+    </code>
+  </pre>
+
+    <script>
+      // Ejemplo de Try...Catch
+      try {
+        let resultado = 10 / 0; // Genera un error al dividir por cero
+        console.log(resultado);
+      } catch (error) {
+        console.error("Se ha producido un error:", error);
+      }
+
+      // Ejemplo de Throw
+      try {
+        let edad = 15;
+        if (edad < 18) {
+          throw new Error("El usuario es menor de edad");
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+
+      // Ejemplo de Finally
+      try {
+        let x = 10;
+        let y = a + 20; // Error de referencia: 'a' no está definida
+        console.log(x + y);
+      } catch (error) {
+        console.error("Se ha producido un error:", error.message);
+      } finally {
+        console.log("Esto se ejecuta siempre, incluso si hay un error");
+      }
+    </script>
+  </body>
+</html>
