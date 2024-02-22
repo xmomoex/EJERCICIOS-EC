@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Currículum</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1,
+      h2 {
+        margin-bottom: 10px;
+      }
+      .experiencia,
+      .educacion,
+      .habilidades {
+        margin-bottom: 20px;
+      }
+      .experiencia h2,
+      .educacion h2,
+      .habilidades h2 {
+        margin-bottom: 5px;
+      }
+      .experiencia ul,
+      .educacion ul,
+      .habilidades ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .experiencia li,
+      .educacion li,
+      .habilidades li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Currículum de Juan Pérez</h1>
+    <div id="contenido"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("curriculum.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error al cargar el archivo JSON");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            mostrarCurriculum(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+        function mostrarCurriculum(curriculum) {
+          const contenido = document.getElementById("contenido");
+
+          // Nombre y título
+          contenido.innerHTML += `<h2>${curriculum.nombre}</h2>`;
+          contenido.innerHTML += `<h3>${curriculum.titulo}</h3>`;
+
+          // Resumen
+          contenido.innerHTML += `<p>${curriculum.resumen}</p>`;
+
+          // Experiencia laboral
+          contenido.innerHTML += `<div class="experiencia"><h2>Experiencia Laboral</h2><ul>`;
+          curriculum.experiencia.forEach((item) => {
+            contenido.innerHTML += `<li><strong>${item.puesto}</strong> - ${item.empresa}, ${item.periodo}<br>${item.descripcion}</li>`;
+          });
+          contenido.innerHTML += `</ul></div>`;
+
+          // Educación
+          contenido.innerHTML += `<div class="educacion"><h2>Educación</h2><ul>`;
+          curriculum.educacion.forEach((item) => {
+            contenido.innerHTML += `<li><strong>${item.titulo}</strong> - ${item.institucion}, ${item.periodo}</li>`;
+          });
+          contenido.innerHTML += `</ul></div>`;
+
+          // Habilidades
+          contenido.innerHTML += `<div class="habilidades"><h2>Habilidades</h2><ul>`;
+          curriculum.habilidades.forEach((habilidad) => {
+            contenido.innerHTML += `<li>${habilidad}</li>`;
+          });
+          contenido.innerHTML += `</ul></div>`;
+        }
+      });
+    </script>
+  </body>
+</html>

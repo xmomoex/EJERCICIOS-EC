@@ -1,0 +1,41 @@
+{
+  "nombre": "Juan Pérez",
+  "titulo": "Desarrollador Web",
+  "resumen": "Desarrollador web con experiencia en tecnologías frontend y backend.",
+  "experiencia": [
+    {
+      "puesto": "Desarrollador Full Stack",
+      "empresa": "TechCorp",
+      "periodo": "Enero 2018 - Presente",
+      "descripcion": "Desarrollo y mantenimiento de aplicaciones web utilizando JavaScript, Node.js, React y MongoDB."
+    },
+    {
+      "puesto": "Desarrollador Junior",
+      "empresa": "WebDev Co.",
+      "periodo": "Julio 2016 - Diciembre 2017",
+      "descripcion": "Participación en proyectos de desarrollo web frontend con HTML, CSS y JavaScript."
+    }
+  ],
+  "educacion": [
+    {
+      "titulo": "Ingeniería en Informática",
+      "institucion": "Universidad Nacional",
+      "periodo": "2012 - 2016"
+    },
+    {
+      "titulo": "Curso Avanzado de Desarrollo Web",
+      "institucion": "Online University",
+      "periodo": "2017 - 2018"
+    }
+  ],
+  "habilidades": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Node.js",
+    "React",
+    "MongoDB",
+    "SQL",
+    "Git"
+  ]
+}
