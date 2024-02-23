@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Señal de Intersección con Prioridad</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+      // Obtener el contexto 2D del lienzo
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+
+      // Dibujar el borde rojo
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 12;
+      ctx.beginPath();
+      ctx.moveTo(200, 10);
+      ctx.lineJoin = "round";
+      ctx.lineTo(390, 360);
+      ctx.lineTo(10, 360);
+      ctx.closePath();
+      ctx.stroke();
+
+      // Dibujar la línea horizontal
+      ctx.strokeStyle = "black"; // Establecer el color de la línea
+      ctx.lineWidth = 20; // Establecer el ancho de la línea
+      ctx.beginPath();
+      ctx.moveTo(120, 220);
+      ctx.lineTo(280, 220);
+      ctx.stroke();
+      ctx.lineWidth = 100;
+      ctx.beginPath();
+      ctx.moveTo(160, 220);
+      ctx.lineTo(240, 220);
+      ctx.stroke();
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(163.5, 270);
+      ctx.lineTo(200, 270);
+      ctx.lineTo(163.5, 320);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(200, 270);
+      ctx.lineTo(237.5, 270);
+      ctx.lineTo(237.5, 320);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(163.5, 170);
+      ctx.lineTo(237.5, 170);
+      ctx.lineTo(200, 100);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Señal de Tráfico</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="200"></canvas>
+
+    <script>
+         // Obtener el contexto 2D del lienzo
+         var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+
+
+        // Dibujar el borde rojo
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(100, 20);
+        ctx.lineJoin = "round";
+        ctx.lineTo(180, 180);
+        ctx.lineTo(20, 180);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Dibujar los círculos
+        var radius = 10; // Radio de los círculos
+        var centerX = 100; // Coordenada x del centro de los círculos
+        var centerY = 120; // Coordenada y del centro de los círculos
+        ctx.fillStyle = 'yellow'; // Color de los círculos
+        ctx.beginPath();
+        ctx.arc(centerX, centerY - 5, radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillStyle = 'green'; // Color de los círculos
+        ctx.beginPath();
+        ctx.arc(centerX, centerY + 40, radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillStyle = 'red'; // Color de los círculos
+        ctx.beginPath();
+        ctx.arc(centerX, centerY - 50, radius, 0, 2 * Math.PI);
+        ctx.fill();
+    </script>
+</body>
+</html>
