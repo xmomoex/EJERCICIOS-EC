@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100%;
+        }
+
+        canvas{
+            margin: 1rem;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="200"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+
+            // Dibujar el triangulo blanca
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.lineJoin = "round";
+            ctx.moveTo(100, 20);
+            ctx.lineTo(20,160);
+            ctx.lineTo(180,160);
+            ctx.closePath();
+
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "black";
+
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.moveTo(90,80)
+            ctx.lineTo(80,80);
+            ctx.lineTo(80,115);
+            ctx.lineTo(70,115);
+            ctx.lineTo(85,140);
+            ctx.lineTo(100,115);
+            ctx.lineTo(90,115);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+            
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.moveTo(110,140);
+            ctx.lineTo(120,140);
+            ctx.lineTo(120,105);
+            ctx.lineTo(130,105);
+            ctx.lineTo(115,80);
+            ctx.lineTo(100,105);
+            ctx.lineTo(110,105);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+
+ 
+        })
+    </script>
+</body>
+</html>

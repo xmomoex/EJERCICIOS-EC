@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        canvas {
+            margin: 1rem;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="200" height="200"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+
+            // Dibujar el triangulo blanca
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.lineJoin = "round";
+            ctx.moveTo(100, 20);
+            ctx.lineTo(20, 160);
+            ctx.lineTo(180, 160);
+            ctx.closePath();
+
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "black";
+
+            ctx.fillStyle = "yellow";
+            ctx.beginPath()
+            ctx.arc(100, 100, 10, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.fillStyle = "red";
+            ctx.beginPath()
+            ctx.arc(100, 70, 10, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.fillStyle = "green";
+            ctx.beginPath()
+            ctx.arc(100, 130, 10, 0, 2 * Math.PI);
+            ctx.fill();
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>

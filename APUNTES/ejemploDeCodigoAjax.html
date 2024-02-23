@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Example</title>
+    <script>
+        // Función para hacer la petición AJAX
+        function hacerPeticionAJAX() {
+            // Crear objeto XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+
+            // Configurar la solicitud
+            xhr.open('GET', 'datos.txt', true);
+
+            // Configurar el manejo de la respuesta
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Cuando la solicitud haya sido completada y sea exitosa
+                    document.getElementById('resultado').innerHTML = xhr.responseText;
+                }
+            };
+
+            // Enviar la solicitud
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Ejemplo de AJAX</h2>
+    <!-- Botón para hacer la petición AJAX -->
+    <button onclick="hacerPeticionAJAX()">Hacer petición AJAX</button>
+    <br><br>
+    <!-- Aquí se mostrará la respuesta -->
+    <div id="resultado"></div>
+</body>
+
+</html>

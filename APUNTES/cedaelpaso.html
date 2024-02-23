@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceda el paso</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            // Limpiar el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Girar el triángulo 180 grados
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(Math.PI);
+
+            // Dibujar el triángulo blanco
+            ctx.beginPath();
+            ctx.lineJoin = "round";
+            ctx.moveTo(-150, 150); // Esquina inferior izquierda
+            ctx.lineTo(0, -150); // Esquina superior
+            ctx.lineTo(150, 150); // Esquina inferior derecha
+            ctx.closePath();
+            ctx.fillStyle = 'white';
+            ctx.fill();
+
+            // Dibujar el borde rojo grande
+            ctx.lineWidth = 15;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+        });
+    </script>
+</body>
+
+</html>

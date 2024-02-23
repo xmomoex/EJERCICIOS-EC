@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asincronía Ejemplo</title>
+</head>
+
+<body>
+    <script>
+        // Función asincrónica que simula una operación que toma un tiempo
+        function esperar(ms) {
+            return new Promise(resolve => {
+                setTimeout(resolve, ms);
+            });
+        }
+
+        // Función asincrónica que realiza una tarea
+        async function tareaAsincronica(nombre, segundos) {
+            console.log(`Iniciando tarea ${nombre}`);
+            await esperar(segundos * 1000); // Esperar 'segundos' segundos
+            console.log(`Tarea ${nombre} completada después de ${segundos} segundos`);
+        }
+
+        // Función principal asincrónica
+        async function main() {
+            // Correr múltiples tareas asincrónicas simultáneamente
+            await Promise.all([
+                tareaAsincronica("Tarea 1", 3),
+                tareaAsincronica("Tarea 2", 2),
+                tareaAsincronica("Tarea 3", 1)
+            ]);
+        }
+
+        // Llamar a la función principal
+        main().then(() => {
+            console.log("Todas las tareas han sido completadas.");
+        }).catch(error => {
+            console.error("Ocurrió un error:", error);
+        });
+
+    </script>
+</body>
+
+</html>

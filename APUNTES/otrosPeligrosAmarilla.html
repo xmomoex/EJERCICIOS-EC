@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceda el paso Recta</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const center = { x: canvas.width / 2, y: canvas.height / 2 }
+
+            // Dibujar el triángulo blanco
+            ctx.beginPath();
+            ctx.lineJoin = "round";
+            ctx.moveTo(center.x - 150, center.y + 150);
+            ctx.lineTo(center.x, center.y - 150);
+            ctx.lineTo(center.x + 150, center.y + 150);
+            ctx.closePath();
+            ctx.fillStyle = 'yellow';
+            ctx.fill();
+
+
+            // Dibujar el borde rojo grande
+            ctx.lineWidth = 15;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            ctx.closePath();
+            ctx.save();
+
+
+
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.lineWidth = 15;
+            ctx.lineJoin = "round";
+            ctx.moveTo(250, 200);
+            ctx.lineTo(250, 300);
+            ctx.closePath();
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.fillStyle = 'black';
+            ctx.arc(250, 350, 4, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fill();
+        });
+    </script>
+</body>
+
+</html>

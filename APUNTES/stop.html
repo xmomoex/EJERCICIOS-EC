@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOP</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            // Definir dimensiones y colores
+            const width = canvas.width;
+            const height = canvas.height;
+            const redColor = "#FF0000";
+            const whiteColor = "#FFFFFF";
+            const blackColor = "#000000";
+
+            // Limpiar el lienzo
+            ctx.clearRect(0, 0, width, height);
+
+            // Calcular el centro del octágono
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            // Calcular el radio del octágono (utilizando el radio más pequeño inscrito en el círculo)
+            const radius = Math.min(width, height) / 3;
+
+            // Ancho del borde blanco
+            const whiteBorderWidth = 20;
+
+            // Rotación en radianes (22 grados)
+            const rotationAngle = 22 * Math.PI / 180;
+
+            // Dibujar el borde blanco del octágono
+            ctx.strokeStyle = whiteColor;
+            ctx.lineWidth = whiteBorderWidth;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = rotationAngle + (Math.PI / 4) * i;
+                const x = centerX + (radius - whiteBorderWidth / 2) * Math.cos(angle);
+                const y = centerY + (radius - whiteBorderWidth / 2) * Math.sin(angle);
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.stroke();
+
+            // Dibujar el borde negro del octágono
+            ctx.strokeStyle = blackColor;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = rotationAngle + (Math.PI / 4) * i;
+                const x = centerX + (radius - whiteBorderWidth - 3) * Math.cos(angle);
+                const y = centerY + (radius - whiteBorderWidth - 3) * Math.sin(angle);
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.stroke();
+
+            // Dibujar el octágono relleno de color rojo
+            ctx.fillStyle = redColor;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = rotationAngle + (Math.PI / 4) * i;
+                const x = centerX + (radius - whiteBorderWidth - 3 - 6) * Math.cos(angle);
+                const y = centerY + (radius - whiteBorderWidth - 3 - 6) * Math.sin(angle);
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+
+            // Dibujar el texto "STOP"
+            ctx.fillStyle = whiteColor;
+            ctx.font = "bold 50px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("STOP", centerX, centerY + 15);
+        });
+    </script>
+</body>
+
+</html>
