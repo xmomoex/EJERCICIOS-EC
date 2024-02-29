@@ -1,17 +1,15 @@
+import { Header } from "./components/Header";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <header>
-        <h1>bienvenidos a equipos</h1>
-      </header>
+      <Header />
       <section>
         <p>Este es el section</p>
       </section>
-      <footer>
-        <p>este es el footer</p>
-      </footer>
+      <Footer />
     </>
   );
 }
