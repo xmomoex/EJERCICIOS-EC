@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <Header title="mi pagina web" show={true}>
+      <Header title="mi pagina web" show={false}>
         <h1>Esto es un header</h1>
         <Footer />
       </Header>
