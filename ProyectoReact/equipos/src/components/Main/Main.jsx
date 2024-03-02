@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Main.css";
 
 const Main = () => {
   const [jugadores, setJugadores] = useState("");
@@ -54,14 +55,17 @@ const Main = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <textarea
-            name="jugadores"
-            value={jugadores}
-            onChange={handleInputChange}
-            cols="50"
-            rows="30"
-          ></textarea>
+        <div className="fondo">
+          <div className="texto">
+            <h2>INTRODUCE LOS JUGADORES POR LINEAS</h2>
+            <textarea
+              name="jugadores"
+              value={jugadores}
+              onChange={handleInputChange}
+              cols="50"
+              rows="30"
+            ></textarea>
+          </div>
         </div>
         <div>
           <span>Selecciona el número de equipos:</span>
