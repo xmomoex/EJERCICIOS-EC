@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Main.css";
 
 const Main = () => {
   const [jugadores, setJugadores] = useState("");
