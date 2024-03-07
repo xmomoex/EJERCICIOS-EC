@@ -1,4 +1,8 @@
 .header {
-  background-color: yellow;
-  padding: 24px;
+  background: url(../../public/RB.jpg);
+  background-size: cover;
+  padding: 60px;
+}
+.header .title {
+  color: black;
 }

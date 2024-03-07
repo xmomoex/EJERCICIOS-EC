@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Main.css"; // Importar archivo CSS
 
 const Main = () => {
   const [jugadores, setJugadores] = useState("");
@@ -58,45 +59,49 @@ const Main = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="fondo">
-          <div className="texto">
-            <h2>INTRODUCE LOS JUGADORES POR LINEAS</h2>
-            <textarea
-              name="jugadores"
-              value={jugadores}
-              onChange={handleInputChange}
-              cols="50"
-              rows="30"
-            ></textarea>
-          </div>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
+          <h2 className="title">INTRODUCE LOS JUGADORES POR LÍNEA</h2>
+          <textarea
+            className="form-control"
+            name="jugadores"
+            value={jugadores}
+            onChange={handleInputChange}
+            cols="50"
+            rows="10"
+            placeholder="Escribe el nombre de los jugadores, uno por línea"
+          ></textarea>
         </div>
-        <div>
-          <span>Selecciona el número de equipos:</span>
+        <div className="form-group">
+          <span className="num-label">Selecciona el número de equipos:</span>
           {[2, 3, 4, 5, 6, 7, 8].map((num) => (
-            <label key={num}>
+            <label key={num} className="radio-label">
               <input
                 type="radio"
                 name="numEquipos"
                 value={num}
                 checked={numEquipos === num}
                 onChange={handleNumEquiposChange}
+                className="radio-input"
               />
+              <span className="radio-custom"></span>
               {num}
             </label>
           ))}
         </div>
-        <div>
-          <button type="submit">Enviar</button>
+        <div className="form-group">
+          <button type="submit" className="btn-submit">
+            Enviar
+          </button>
         </div>
       </form>
 
-      <div>
+      <div className="equipos">
         {equipos.map((equipo, index) => (
-          <div key={index}>
+          <div key={index} className="equipo">
             <h3>Equipo {index + 1}</h3>
-            <ul>
+            <ul className="jugadores">
               {equipo.map((jugador, jugadorIndex) => (
                 <li key={jugadorIndex}>{jugador}</li>
               ))}
