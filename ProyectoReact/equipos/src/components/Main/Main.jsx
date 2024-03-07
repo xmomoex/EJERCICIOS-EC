@@ -22,6 +22,7 @@ const Main = () => {
 
     // Calcular cuántos jugadores debe tener cada equipo
     const jugadoresPorEquipo = Math.floor(jugadoresArray.length / numEquipos);
+    let jugadoresExtras = jugadoresArray.length % numEquipos; // Jugadores sobrantes
 
     // Mezclar aleatoriamente el array de jugadores
     const jugadoresMezclados = shuffleArray(jugadoresArray);
@@ -31,7 +32,12 @@ const Main = () => {
 
     let jugadorIndex = 0;
     for (let i = 0; i < numEquipos; i++) {
-      for (let j = 0; j < jugadoresPorEquipo; j++) {
+      let actualJugadoresPorEquipo = jugadoresPorEquipo;
+      if (jugadoresExtras > 0) {
+        actualJugadoresPorEquipo++;
+        jugadoresExtras--;
+      }
+      for (let j = 0; j < actualJugadoresPorEquipo; j++) {
         if (jugadorIndex < jugadoresMezclados.length) {
           equiposTemp[i].push(jugadoresMezclados[jugadorIndex]);
           jugadorIndex++;
